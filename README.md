@@ -26,6 +26,11 @@ Omvandlar platsnamn till latitud/longitud
 Hämtar aktuell väderdata baserat på koordinater  
 `https://api.open-meteo.com/v1/forecast?...`
 
+## 📸 Exempel på resultat
+
+![Exempelbild](src/images/Finland.png)
+![Exempelbild](src/images/Sweden.png)
+
 ---
 
 ##  Använda tekniker
