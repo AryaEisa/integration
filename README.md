@@ -1,119 +1,97 @@
-# React + Axios API Integration – Exempel med Open-Meteo
+project:
+  name: Temperaturjämförelse med React, Axios & Chart.js
+  description: >
+    En interaktiv React-applikation där användaren kan söka efter valfria länder,
+    hämta aktuell temperatur via Open-Meteo API, och visualisera vädret i ett dynamiskt
+    stapeldiagram. Projektet demonstrerar API-integration, state-hantering och visualisering
+    med Chart.js – helt utan behov av API-nycklar.
 
-Detta projekt visar hur man integrerar ett externt REST API i en React-applikation med **Axios**. Projektet är pedagogiskt uppbyggt för att demonstrera hur data kan hämtas från ett externt API, hanteras i React och presenteras för användaren.
+sections:
 
-Vi använder [Open-Meteo](https://open-meteo.com/) – ett **gratis väder-API** – som exempel. Ingen API-nyckel krävs, vilket gör det perfekt för test, träning och undervisning.
+  - title: Axios och API-integration
+    description: >
+      Projektet använder Axios för att hämta data från externa REST API:er. Användaren matar in ett land, 
+      som omvandlas till koordinater via Open-Meteo Geocoding API. Dessa används sedan för att hämta aktuell 
+      temperatur från Forecast API. Axios används i asynkrona funktioner med `async/await` och felhantering 
+      via `try/catch`.
 
----
+    api_usage:
+      geocoding_api: "https://geocoding-api.open-meteo.com/v1/search?name=Berlin"
+      forecast_api: "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m&timezone=auto"
+    concepts:
+      - HTTP-anrop med axios.get
+      - async/await för asynkrona funktioner
+      - API-felhantering med try/catch
+      - Dynamiskt bygga URL:er baserat på användarinmatning
 
-## Vad du lär dig
+  - title: Temperaturjämförelse och visualisering
+    description: >
+      Temperaturdata samlas dynamiskt i en lista (state) och visas i ett stapeldiagram
+      byggt med Chart.js och react-chartjs-2. Användaren kan successivt lägga till nya länder,
+      och grafen uppdateras direkt. Dubletter förhindras. Det finns även en nollställningsfunktion.
 
--  Anropa ett API med Axios (`axios.get`)
--  Skicka parametrar (ex: stad → koordinater → data)
--  Hantera JSON-respons och rendera i React-komponenter
--  Använda `useState`, `useEffect` och event-hantering i React
--  Grundläggande felhantering och inputvalidering
+    dynamic_features:
+      - Lägga till valfritt land via input
+      - Automatisk visualisering i realtid
+      - Nollställningsknapp för att rensa
+      - Dublettskydd baserat på landsnamn
+    visualisation:
+      library: "Chart.js"
+      wrapper: "react-chartjs-2"
+      diagram_type: "Bar chart (stapeldiagram)"
+    images:
+      - src/images/Sweden.png
+      - src/images/Finland.png
+      - src/image/tomt.png
+      - src/image/one.png
+      - src/image/two.png
+      - src/image/many.png
+  - title: Använd teknik
+  
+    tools:
+      react: "UI, komponentstruktur och tillståndshantering"
+      axios: "HTTP-anrop till REST API:er"
+      chartjs: "Visualisering av temperatur i stapeldiagram"
+      react_chartjs_2: "React-kompatibel wrapper för Chart.js"
+      open_meteo_api: "Kostnadsfritt API för väder och geokodning"
+      css: "Responsiv layout och användargränssnitt"
+    structure:
+      - src/chartjs.js: "Huvudkomponent med API-anrop och graf"
+      - src/chartjs.css: "Stilar för layout, knappar och input"
+      - src/App.js: "Import och rendering av huvudkomponenten"
+      - src/index.js: "Startpunkt för React-applikationen"
 
----
+  - title: React-applikationsstruktur (CRA)
+    description: >
+      Projektet är uppsatt med Create React App (CRA), vilket ger tillgång till en färdig
+      utvecklingsmiljö och standardkommandon för utveckling, test och build.
 
-## API som används
+    commands:
+      - name: npm start
+        description: Startar utvecklingsservern på localhost:3000
+      - name: npm test
+        description: Kör testsviten i watch mode
+      - name: npm run build
+        description: Bygger appen för produktion (minifierad, optimerad)
+      - name: npm run eject
+        description: Exporterar all konfiguration från CRA (irreversibel)
 
-### 1. **Geocoding API**
-Omvandlar platsnamn till latitud/longitud  
-`https://geocoding-api.open-meteo.com/v1/search?name=Berlin`
-
-### 2. **Forecast API**
-Hämtar aktuell väderdata baserat på koordinater  
-`https://api.open-meteo.com/v1/forecast?...`
-
-## 📸 Exempel på resultat
-
-![Exempelbild](src/images/Finland.png)
-![Exempelbild](src/images/Sweden.png)
-
----
-
-##  Använda tekniker
-
-- React + JSX
-- Axios (för API-anrop)
-- Open-Meteo (gratis REST API)
-- Ren CSS
-
----
-
-##  Filstruktur
-
-
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
+  - title: Utvecklings- och användarguide
+    setup:
+      steps:
+        - git clone <repository-url>
+        - cd projektnamn
+        - npm install
+        - npm start
+        - Öppna http://localhost:3000 i webbläsare
+    recommended_improvements:
+      - Lägg till väderikoner och vindhastighet
+      - Visa trender (prognoser flera dagar)
+      - Spara i localStorage
+      - Exportera till PDF eller CSV
+      - Lägg till dark mode
+    license: MIT
+    author:
+      name: Ditt Namn
+      contact: din@email.com
+      website: https://dinhemsida.com
