@@ -1,3 +1,46 @@
+# React + Axios API Integration – Exempel med Open-Meteo
+
+Detta projekt visar hur man integrerar ett externt REST API i en React-applikation med **Axios**. Projektet är pedagogiskt uppbyggt för att demonstrera hur data kan hämtas från ett externt API, hanteras i React och presenteras för användaren.
+
+Vi använder [Open-Meteo](https://open-meteo.com/) – ett **gratis väder-API** – som exempel. Ingen API-nyckel krävs, vilket gör det perfekt för test, träning och undervisning.
+
+---
+
+## Vad du lär dig
+
+-  Anropa ett API med Axios (`axios.get`)
+-  Skicka parametrar (ex: stad → koordinater → data)
+-  Hantera JSON-respons och rendera i React-komponenter
+-  Använda `useState`, `useEffect` och event-hantering i React
+-  Grundläggande felhantering och inputvalidering
+
+---
+
+## API som används
+
+### 1. **Geocoding API**
+Omvandlar platsnamn till latitud/longitud  
+`https://geocoding-api.open-meteo.com/v1/search?name=Berlin`
+
+### 2. **Forecast API**
+Hämtar aktuell väderdata baserat på koordinater  
+`https://api.open-meteo.com/v1/forecast?...`
+
+---
+
+##  Använda tekniker
+
+- React + JSX
+- Axios (för API-anrop)
+- Open-Meteo (gratis REST API)
+- Ren CSS
+
+---
+
+##  Filstruktur
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
